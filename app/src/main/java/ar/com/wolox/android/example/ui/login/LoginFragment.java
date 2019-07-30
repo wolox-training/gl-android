@@ -21,9 +21,9 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements Logi
         vLogin.setOnClickListener(view -> {
             Toast.makeText(requireContext(), "Login pressed",Toast.LENGTH_SHORT).show();
         });
-        Button vSignUp = requireActivity().findViewById(R.id.vSignUpButton);
-        vSignUp.setOnClickListener(x -> {
-            Toast.makeText(requireContext(), "Signup pressed", Toast.LENGTH_SHORT).show();
+        Button vSignup = requireActivity().findViewById(R.id.vSignUpButton);
+        vSignup.setOnClickListener(view -> {
+            Toast.makeText(requireContext(), "Signup pressed",Toast.LENGTH_SHORT).show();
         });
     }
 }
