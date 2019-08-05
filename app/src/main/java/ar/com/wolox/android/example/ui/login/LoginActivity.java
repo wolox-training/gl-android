@@ -13,6 +13,5 @@ public class LoginActivity extends WolmoActivity {
     @Override
     protected void init() {
         replaceFragment(R.id.vActivityLogin, new LoginFragment());
-
     }
 }

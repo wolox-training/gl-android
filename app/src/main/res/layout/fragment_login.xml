@@ -27,7 +27,6 @@
             android:layout_marginTop="@dimen/static_spacing_largest"
             android:gravity="bottom|center_horizontal"
             android:src="@drawable/wolox_logo_large" />
-
     </RelativeLayout>
 
     <EditText
@@ -40,9 +39,7 @@
         android:gravity="center"
         android:importantForAutofill="no"
         android:inputType="textEmailAddress"
-        android:hint=""
-
-        />
+        android:hint="" />
 
     <EditText
         android:id="@+id/vPassword"

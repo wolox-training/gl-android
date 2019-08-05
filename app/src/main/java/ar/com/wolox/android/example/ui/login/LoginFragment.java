@@ -9,7 +9,6 @@ import ar.com.wolox.wolmo.core.fragment.WolmoFragment;
 
 public class LoginFragment extends WolmoFragment<LoginPresenter> implements LoginView {
 
-    //    override fun layout(): Int = R.layout.fragment_example
     @Override
     public int layout() {
         return R.layout.fragment_login;
@@ -41,5 +40,4 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements Logi
             Toast.makeText(requireContext(), "Signup presionado",Toast.LENGTH_SHORT).show();
         });
     }
-
 }
