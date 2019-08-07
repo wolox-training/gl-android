@@ -1,48 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/logo_cover"
+            android:id="@+id/vLoginLogoCover"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/login_cover"
-            android:foreground="@drawable/cover_gradient"
-            tools:targetApi="m" />
+            android:foreground="@drawable/cover_gradient" />
 
         <ImageView
-            android:id="@+id/wolox_logo"
+            android:id="@+id/vLoginWoloxLogo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/static_spacing_largest"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/login_cover_logo_height"
+            android:adjustViewBounds="false"
             android:gravity="bottom|center_horizontal"
             android:src="@drawable/wolox_logo_large" />
+
     </RelativeLayout>
 
     <EditText
-        android:id="@+id/vEmailAccount"
+        android:id="@+id/vLogInEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
         android:gravity="center"
+        android:hint="@string/login_email"
         android:importantForAutofill="no"
-        android:inputType="textEmailAddress"
-        android:hint="" />
+        android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/vPassword"
+        android:id="@+id/vLogInPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -50,8 +49,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
         android:gravity="center"
-        android:inputType="textWebPassword"
-        android:importantForAutofill="no" />
+        android:importantForAutofill="no"
+        android:inputType="textWebPassword" />
 
     <Button
         android:id="@+id/vLogInButton"
@@ -62,7 +61,7 @@
         android:layout_marginRight="16dp"
         android:background="@color/wolox_white"
         android:gravity="center"
-        android:text="@string/button_login" />
+        android:text="@string/login_button_login" />
 
     <Button
         android:id="@+id/vSignUpButton"
@@ -73,18 +72,18 @@
         android:layout_marginRight="16dp"
         android:background="@color/wolox_blue"
         android:gravity="center"
-        android:text="@string/button_signup"
+        android:text="@string/login_button_signup"
         android:textColor="@color/wolox_white" />
 
     <TextView
         android:id="@+id/vTermsConditions"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
+        android:layout_weight="1"
         android:gravity="bottom|center_horizontal"
-        android:text="@string/terms_and_conditions"
+        android:text="@string/login_terms_and_conditions"
         android:textAlignment="center" />
 </LinearLayout>
