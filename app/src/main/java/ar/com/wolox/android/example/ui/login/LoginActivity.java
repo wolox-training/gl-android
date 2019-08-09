@@ -7,6 +7,7 @@ import ar.com.wolox.wolmo.core.activity.WolmoActivity;
 public class LoginActivity extends WolmoActivity {
     @Override
     protected int layout() {
+
         return R.layout.activity_login;
     }
 

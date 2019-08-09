@@ -36,7 +36,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
         android:gravity="center"
-        android:hint="@string/login_email"
+        android:hint="@string/vlogin_email"
         android:importantForAutofill="no"
         android:inputType="textEmailAddress" />
 
@@ -61,7 +61,7 @@
         android:layout_marginRight="16dp"
         android:background="@color/wolox_white"
         android:gravity="center"
-        android:text="@string/login_button_login" />
+        android:text="@string/vlogin_button_login" />
 
     <Button
         android:id="@+id/vSignUpButton"
@@ -72,7 +72,7 @@
         android:layout_marginRight="16dp"
         android:background="@color/wolox_blue"
         android:gravity="center"
-        android:text="@string/login_button_signup"
+        android:text="@string/vlogin_button_signup"
         android:textColor="@color/wolox_white" />
 
     <TextView
@@ -84,6 +84,7 @@
         android:layout_marginBottom="16dp"
         android:layout_weight="1"
         android:gravity="bottom|center_horizontal"
-        android:text="@string/login_terms_and_conditions"
+        android:text="@string/vlogin_terms_and_conditions"
         android:textAlignment="center" />
+
 </LinearLayout>
