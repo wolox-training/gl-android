@@ -46,4 +46,5 @@
     <dimen name="font_huge">24sp</dimen>
 
     <!-- Add your custom dimens here -->
+    <dimen name="login_cover_logo_height">112dp</dimen>
 </resources>

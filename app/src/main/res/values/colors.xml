@@ -5,4 +5,10 @@
     <color name="colorPrimary">#1D9BD7</color>
     <color name="colorPrimaryDark">#0960B7</color>
     <color name="colorAccent">#8DC63F</color>
+    <color name="wolox_white">#FFFFFF</color>
+    <color name="wolox_green">#8DC63F</color>
+    <color name="wolox_green_transparent">#E68DC63F</color>
+    <color name="wolox_blue">#1D9BD7</color>
+    <color name="wolox_blue_transparent">#E61D9BD7</color>
+
 </resources>
