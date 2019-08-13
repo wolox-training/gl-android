@@ -86,5 +86,4 @@
         android:gravity="bottom|center_horizontal"
         android:text="@string/login_terms_and_conditions"
         android:textAlignment="center" />
-
 </LinearLayout>

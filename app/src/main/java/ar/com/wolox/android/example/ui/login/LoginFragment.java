@@ -50,7 +50,6 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements Logi
                 startActivity(intent);
             }
         });
-
         vTermsConditions.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
