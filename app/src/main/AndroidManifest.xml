@@ -13,8 +13,8 @@
 
         <activity
             android:name=".example.ui.RootActivity"
-            android:screenOrientation="portrait"
-            android:noHistory="true" >
+            android:noHistory="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -26,12 +26,17 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".example.ui.signup.SignUpActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".example.ui.home.HomeActivity"
             android:screenOrientation="portrait" />
 
         <activity
             android:name=".example.ui.viewpager.ViewPagerActivity"
             android:screenOrientation="portrait" />
+
 
     </application>
 
