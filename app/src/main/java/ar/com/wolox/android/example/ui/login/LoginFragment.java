@@ -1,7 +1,6 @@
 package ar.com.wolox.android.example.ui.login;
 
 import android.content.Intent;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,21 +29,17 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements Logi
 
     @Override
     public void init() {
-
         ButterKnife.bind(this, getActivity());
     }
 
-
     @Override
     public void setListeners() {
-
         vLogInButton.setOnClickListener(new View.OnClickListener() {
             @OnClick
             public void onClick(View v) {
-                if (areValidFields())
+                if (getPresenter().ValidationFields(vLogInEmail.getText().toString(), vLogInPassword.getText().toString()))
                     getPresenter().doLogin(vLogInEmail.getText().toString(), vLogInPassword.getText().toString());
             }
-
         });
     }
 
@@ -56,21 +51,19 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements Logi
         startActivity(intent);
     }
 
-
-    private boolean areValidFields() {
-        if (vLogInPassword.getText().toString().isEmpty())
-            Toast.makeText(requireContext(), R.string.vlogin_empty_password, Toast.LENGTH_SHORT).show();
-
-        else if (vLogInEmail.getText().toString().isEmpty())
-            Toast.makeText(requireContext(), R.string.vlogin_empty_email, Toast.LENGTH_SHORT).show();
-
-        else if (!Patterns.EMAIL_ADDRESS.matcher(vLogInEmail.getText().toString()).matches()) {
-            vLogInEmail.setError(getString(R.string.vlogin_invalid_email));
-        } else
-            return true;
-        return false;
-
+    @Override
+    public void onEmailFieldEmpty() {
+        Toast.makeText(requireContext(), R.string.login_empty_email, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onPasswordFieldEmpty() {
+        Toast.makeText(requireContext(), R.string.login_empty_password, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onEmailFieldInvalid() {
+        vLogInEmail.setError(getString(R.string.login_invalid_email));
+    }
 
 }

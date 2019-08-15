@@ -3,7 +3,6 @@ package ar.com.wolox.android.example.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.widget.Toast;
 
 import ar.com.wolox.android.R;
 import ar.com.wolox.android.example.ui.home.HomeActivity;
@@ -43,8 +42,8 @@ public class RootActivity extends WolmoActivity {
     }
 
     private String getUsernameLogin() {
-        sharedPref = getSharedPreferences(getApplication().getString(R.string.vlogin_preferences_name), MODE_PRIVATE);
-        return sharedPref.getString("username", null);
+        sharedPref = getSharedPreferences(getApplication().getString(R.string.login_preferences_name), MODE_PRIVATE);
+        return sharedPref.getString(getString(R.string.vRootUsername), null);
 
     }
 
