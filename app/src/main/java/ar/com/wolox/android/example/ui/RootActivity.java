@@ -13,7 +13,6 @@ public class RootActivity extends WolmoActivity {
 
     protected Intent intent;
     protected SharedPreferences sharedPref;
-    protected SharedPreferences.Editor editor;
     protected Class activity;
     private static String username = "username";
 

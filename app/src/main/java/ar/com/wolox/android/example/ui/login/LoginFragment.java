@@ -79,5 +79,4 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements Logi
     public void displayEmailFieldInvalid() {
         vLogInEmail.setError(getString(R.string.login_invalid_email));
     }
-
 }
