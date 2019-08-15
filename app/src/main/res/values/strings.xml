@@ -24,6 +24,10 @@
     <string name="login_button_signup">SIGN UP</string>
     <string name="login_terms_and_conditions">By joing you agree to our <u>Terms &amp; Conditions</u></string>
     <string name="home_activity">HOME</string>
+    <string name="vlogin_invalid_password">Contraseña invalida</string>
+    <string name="vlogin_invalid_user">Usuario invalida</string>
+    <string name="vlogin_failed">Algo salió mal … ¡Intenta más tarde!</string>
+    <string name="vlogin_preferences_name">ar.com.wolox.android.example.ui.login</string>
     <string name="password_required">Password is Required</string>
     <string name="signup_activity">SIGN UP</string>
 

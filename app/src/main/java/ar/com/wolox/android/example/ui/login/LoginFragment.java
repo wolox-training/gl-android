@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.Objects;
 import ar.com.wolox.android.R;
 import ar.com.wolox.android.example.ui.home.HomeActivity;
@@ -51,6 +53,16 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements Logi
             }
         });
         vTermsConditions.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    @Override
+    public void showLoginFailure() {
+        Toast.makeText(requireContext(), R.string.vlogin_failed, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showInvalidPassword() {
+        Toast.makeText(requireContext(), R.string.vlogin_invalid_password, Toast.LENGTH_SHORT).show();
     }
 
     @Override
