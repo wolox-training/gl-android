@@ -33,7 +33,7 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements Logi
 
     @Override
     public void init() {
-        ButterKnife.bind(this, getActivity());
+        ButterKnife.bind(this, Objects.requireNonNull(getActivity()));
     }
 
     @Override
