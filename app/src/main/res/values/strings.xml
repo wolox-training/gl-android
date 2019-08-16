@@ -23,8 +23,7 @@
     <string name="login_button_login">LOG IN</string>
     <string name="login_button_signup">SIGN UP</string>
     <string name="login_terms_and_conditions">By joing you agree to our <u>Terms &amp; Conditions</u></string>
-    <string name="home__activity">HOME</string>
+    <string name="home_activity">HOME</string>
     <string name="password_required">Password is Required</string>
-    <string name="vRootUsername">username</string>
 
 </resources>

@@ -23,7 +23,6 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements Logi
 
     @Override
     public int layout() {
-
         return R.layout.fragment_login;
     }
 
@@ -37,8 +36,7 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements Logi
         vLogInButton.setOnClickListener(new View.OnClickListener() {
             @OnClick
             public void onClick(View v) {
-                if (getPresenter().ValidationFields(vLogInEmail.getText().toString(), vLogInPassword.getText().toString()))
-                    getPresenter().doLogin(vLogInEmail.getText().toString(), vLogInPassword.getText().toString());
+                getPresenter().doLogin(vLogInEmail.getText().toString(), vLogInPassword.getText().toString());
             }
         });
     }
@@ -52,17 +50,19 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements Logi
     }
 
     @Override
-    public void onEmailFieldEmpty() {
-        Toast.makeText(requireContext(), R.string.login_empty_email, Toast.LENGTH_SHORT).show();
+    public void displayEmailFieldEmpty() {
+        vLogInEmail.setError(getString(R.string.login_empty_email));
+        //Toast.makeText(requireContext(), R.string.login_empty_email, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onPasswordFieldEmpty() {
-        Toast.makeText(requireContext(), R.string.login_empty_password, Toast.LENGTH_SHORT).show();
+    public void displayPasswordFieldEmpty() {
+        vLogInPassword.setError(getString(R.string.login_empty_password));
+        //Toast.makeText(requireContext(), R.string.login_empty_password, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onEmailFieldInvalid() {
+    public void displayEmailFieldInvalid() {
         vLogInEmail.setError(getString(R.string.login_invalid_email));
     }
 

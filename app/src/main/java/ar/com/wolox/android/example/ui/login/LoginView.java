@@ -5,9 +5,9 @@ interface LoginView {
 
     void onLoginSuccess();
 
-    void onEmailFieldEmpty();
+    void displayEmailFieldEmpty();
 
-    void onPasswordFieldEmpty();
+    void displayPasswordFieldEmpty();
 
-    void onEmailFieldInvalid();
+    void displayEmailFieldInvalid();
 }

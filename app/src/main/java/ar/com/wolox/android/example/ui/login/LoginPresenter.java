@@ -13,30 +13,31 @@ public class LoginPresenter extends BasePresenter<LoginView> {
 
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
+    private static String username = "username";
 
     @Inject
     LoginPresenter() {
     }
 
-    public void setPreferences(Context context, String emailField) {
+    void setPreferences(Context context, String emailField) {
         sharedPref = context.getSharedPreferences(context.getString(R.string.login_preferences_name), Context.MODE_PRIVATE);
         editor = sharedPref.edit();
-        editor.putString("username", emailField);
+        editor.putString(username, emailField);
         editor.apply();
     }
 
-    public void doLogin(String emailField, String passwordField) {
-        //Logica para hacer el login al Back-END
-        getView().onLoginSuccess();
+    void doLogin(String emailField, String passwordField) {
+        if (validationFields(emailField, passwordField))
+            getView().onLoginSuccess();
     }
 
-    public boolean ValidationFields(String emailField, String passwordField) {
+    private boolean validationFields(String emailField, String passwordField) {
         if (emailField.isEmpty())
-            getView().onEmailFieldEmpty();
+            getView().displayEmailFieldEmpty();
         else if (passwordField.isEmpty())
-            getView().onPasswordFieldEmpty();
+            getView().displayPasswordFieldEmpty();
         else if (!Patterns.EMAIL_ADDRESS.matcher(emailField).matches())
-            getView().onEmailFieldInvalid();
+            getView().displayEmailFieldInvalid();
         else
             return true;
         return false;

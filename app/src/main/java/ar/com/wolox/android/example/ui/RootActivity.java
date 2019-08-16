@@ -15,17 +15,15 @@ public class RootActivity extends WolmoActivity {
     protected SharedPreferences sharedPref;
     protected SharedPreferences.Editor editor;
     protected Class activity;
-
+    private static String username = "username";
 
     @Override
     protected int layout() {
         return R.layout.activity_root;
-
     }
 
     @Override
     protected void init() {
-
         if (OnUsernameLoginSaved())
             activity = HomeActivity.class;
         else
@@ -38,13 +36,10 @@ public class RootActivity extends WolmoActivity {
 
     private boolean OnUsernameLoginSaved() {
         return getUsernameLogin() != null;
-
     }
 
     private String getUsernameLogin() {
         sharedPref = getSharedPreferences(getApplication().getString(R.string.login_preferences_name), MODE_PRIVATE);
-        return sharedPref.getString(getString(R.string.vRootUsername), null);
-
+        return sharedPref.getString(username, null);
     }
-
 }
