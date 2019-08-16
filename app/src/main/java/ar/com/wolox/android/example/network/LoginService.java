@@ -18,21 +18,8 @@ public interface LoginService {
     Call<List<User>> getUserLogin(
             @Query("email") String email);
 
-    /**
-     * @GET("/users") Call<List < User>> getAllUsers();
-     */
-
     @GET("users/{id}")
     Call<User> getUserByCredentials(
             @Query("email") String username,
             @Query("password") String password);
 }
-
-/**
- @GET("group/{id}/users") Call<List < User>> groupList(@Path("id") int groupId, @Query("sort") String sort);
- */
-
-/**
- * @GET("/posts/{id}") fun getPostById(@Path("id") id: Int): Call<Post>
- * }
- **/
