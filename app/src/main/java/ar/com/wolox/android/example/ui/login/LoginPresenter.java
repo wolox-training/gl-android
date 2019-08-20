@@ -1,5 +1,6 @@
 package ar.com.wolox.android.example.ui.login;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Patterns;
@@ -13,16 +14,17 @@ public class LoginPresenter extends BasePresenter<LoginView> {
 
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
-    private static String username = "username";
+    private static final String SP_USERNAME_KEY = "username";
 
     @Inject
     LoginPresenter() {
     }
 
+    @SuppressLint("CommitPrefEdits")
     void setPreferences(Context context, String emailField) {
         sharedPref = context.getSharedPreferences(context.getString(R.string.login_preferences_name), Context.MODE_PRIVATE);
         editor = sharedPref.edit();
-        editor.putString(username, emailField);
+        editor.putString(SP_USERNAME_KEY, emailField);
         editor.apply();
     }
 
