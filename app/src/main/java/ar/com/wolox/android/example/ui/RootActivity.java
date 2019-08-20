@@ -14,7 +14,7 @@ public class RootActivity extends WolmoActivity {
     protected Intent intent;
     protected SharedPreferences sharedPref;
     protected Class activity;
-    private static String username = "username";
+    private static final String SP_USERNAME_KEY = "username";
 
     @Override
     protected int layout() {
@@ -39,6 +39,6 @@ public class RootActivity extends WolmoActivity {
 
     private String getUsernameLogin() {
         sharedPref = getSharedPreferences(getApplication().getString(R.string.login_preferences_name), MODE_PRIVATE);
-        return sharedPref.getString(username, null);
+        return sharedPref.getString(SP_USERNAME_KEY, null);
     }
 }

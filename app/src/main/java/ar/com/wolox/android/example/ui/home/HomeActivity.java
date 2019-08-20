@@ -1,7 +1,5 @@
 package ar.com.wolox.android.example.ui.home;
 
-import android.content.Intent;
-
 import ar.com.wolox.android.R;
 import ar.com.wolox.wolmo.core.activity.WolmoActivity;
 

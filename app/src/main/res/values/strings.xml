@@ -25,7 +25,6 @@
     <string name="login_terms_and_conditions">By joing you agree to our <u>Terms &amp; Conditions</u></string>
     <string name="home_activity">HOME</string>
     <string name="password_required">Password is Required</string>
-    <string name="root_username">username</string>
     <string name="signup_activity">SIGN UP</string>
 
 </resources>

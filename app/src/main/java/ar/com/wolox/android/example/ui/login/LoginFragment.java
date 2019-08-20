@@ -6,9 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import java.util.Objects;
-
 import ar.com.wolox.android.R;
 import ar.com.wolox.android.example.ui.home.HomeActivity;
 import ar.com.wolox.android.example.ui.signup.SignUpActivity;
@@ -66,13 +64,11 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements Logi
     @Override
     public void displayEmailFieldEmpty() {
         vLogInEmail.setError(getString(R.string.login_empty_email));
-        //Toast.makeText(requireContext(), R.string.login_empty_email, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void displayPasswordFieldEmpty() {
         vLogInPassword.setError(getString(R.string.login_empty_password));
-        //Toast.makeText(requireContext(), R.string.login_empty_password, Toast.LENGTH_SHORT).show();
     }
 
     @Override

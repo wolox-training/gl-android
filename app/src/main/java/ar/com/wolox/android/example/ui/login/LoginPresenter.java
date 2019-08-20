@@ -13,6 +13,7 @@ import ar.com.wolox.wolmo.core.presenter.BasePresenter;
 public class LoginPresenter extends BasePresenter<LoginView> {
 
     private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
     private static final String SP_USERNAME_KEY = "username";
 
     @Inject
@@ -22,8 +23,9 @@ public class LoginPresenter extends BasePresenter<LoginView> {
     @SuppressLint("CommitPrefEdits")
     void setPreferences(Context context, String emailField) {
         sharedPref = context.getSharedPreferences(context.getString(R.string.login_preferences_name), Context.MODE_PRIVATE);
-        sharedPref.edit().putString(SP_USERNAME_KEY, emailField);
-        sharedPref.edit().apply();
+        editor = sharedPref.edit();
+        editor.putString(SP_USERNAME_KEY, emailField);
+        editor.apply();
     }
 
     void doLogin(String emailField, String passwordField) {
