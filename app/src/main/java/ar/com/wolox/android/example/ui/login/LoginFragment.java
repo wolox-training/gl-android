@@ -56,12 +56,12 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements Logi
     }
 
     @Override
-    public void showLoginFailure() {
+    public void displayLoginFailure() {
         Toast.makeText(requireContext(), R.string.vlogin_failed, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void showInvalidPassword() {
+    public void displayInvalidPassword() {
         Toast.makeText(requireContext(), R.string.vlogin_invalid_password, Toast.LENGTH_SHORT).show();
     }
 

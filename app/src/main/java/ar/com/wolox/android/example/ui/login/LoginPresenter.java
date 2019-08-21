@@ -23,9 +23,6 @@ public class LoginPresenter extends BasePresenter<LoginView> {
     private static final String SP_USERNAME_KEY = "username";
 
     @Inject
-    RetrofitServices baseRetrofitServices;
-
-    @Inject
     LoginPresenter() {
     }
 
@@ -41,7 +38,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
     void doLogin(String emailField, String passwordField) {
         if (validationFields(emailField, passwordField)) {
             LoginService usersService = RetrofitInstance.getRetrofitInstance().create(LoginService.class);
-            Call<List<User>> call = baseRetrofitServices.getService(LoginService.class).getUserLogin(emailField);
+            Call<List<User>> call = usersService.getUserLogin(emailField);
             call.enqueue(new Callback<List<User>>() {
 
                 @Override
@@ -49,7 +46,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                     if (response.body().isEmpty()) {
                         getView().displayEmailFieldInvalid();
                     } else if (!response.body().get(0).getPassword().equals(passwordField)) {
-                        getView().showInvalidPassword();
+                        getView().displayInvalidPassword();
                     } else {
                         getView().onLoginSuccess();
                     }
@@ -57,7 +54,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
 
                 @Override
                 public void onFailure(@NotNull Call<List<User>> call, @NotNull Throwable t) {
-                    getView().showLoginFailure();
+                    getView().displayLoginFailure();
                 }
             });
         }

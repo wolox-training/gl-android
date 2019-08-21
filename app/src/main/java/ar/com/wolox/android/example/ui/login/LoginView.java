@@ -11,8 +11,8 @@ interface LoginView {
 
     void displayEmailFieldInvalid();
 
-    void showLoginFailure();
+    void displayLoginFailure();
 
-    void showInvalidPassword();
+    void displayInvalidPassword();
 
 }
