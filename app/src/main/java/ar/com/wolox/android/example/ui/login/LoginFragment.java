@@ -66,7 +66,7 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements Logi
 
     @Override
     public void onLoginSuccess() {
-        getPresenter().setPreferences(getContext(), vLogInEmail.getText().toString());
+        getPresenter().setPreferences(Objects.requireNonNull(getContext()), vLogInEmail.getText().toString());
         Intent intent = new Intent(getActivity(), HomeActivity.class);
         startActivity(intent);
     }

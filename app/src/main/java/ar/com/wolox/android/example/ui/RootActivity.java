@@ -1,18 +1,9 @@
 package ar.com.wolox.android.example.ui;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
 import ar.com.wolox.android.R;
-import ar.com.wolox.android.example.ui.home.HomeActivity;
-import ar.com.wolox.android.example.ui.login.LoginActivity;
 import ar.com.wolox.wolmo.core.activity.WolmoActivity;
 
 public class RootActivity extends WolmoActivity {
-
-    protected Intent intent;
-    protected SharedPreferences sharedPref;
-    protected Class activity;
-    private static final String SP_USERNAME_KEY = "username";
 
     @Override
     protected int layout() {
@@ -21,22 +12,6 @@ public class RootActivity extends WolmoActivity {
 
     @Override
     protected void init() {
-        if (isUsernameSaved())
-            activity = HomeActivity.class;
-        else
-            activity = LoginActivity.class;
-
-        intent = new Intent(this, activity);
-        this.intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
-
-    private boolean isUsernameSaved() {
-        return getUsernameLogin() != null;
-    }
-
-    private String getUsernameLogin() {
-        sharedPref = getSharedPreferences(getApplication().getString(R.string.login_preferences_name), MODE_PRIVATE);
-        return sharedPref.getString(SP_USERNAME_KEY, null);
+        replaceFragment(R.id.vActivityRoot, new RootFragment());
     }
 }
