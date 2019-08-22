@@ -24,7 +24,6 @@ public class LoginPresenter extends BasePresenter<LoginView> {
     LoginPresenter() {
     }
 
-
     @SuppressLint("CommitPrefEdits")
     void setPreferences(Context context, String emailField) {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.login_preferences_name), Context.MODE_PRIVATE);

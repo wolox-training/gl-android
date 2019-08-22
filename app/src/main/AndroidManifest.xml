@@ -37,7 +37,6 @@
             android:name=".example.ui.viewpager.ViewPagerActivity"
             android:screenOrientation="portrait" />
 
-
     </application>
 
 </manifest>
