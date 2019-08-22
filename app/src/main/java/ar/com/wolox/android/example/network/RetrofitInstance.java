@@ -13,7 +13,6 @@ public class RetrofitInstance {
     private static final String BASE_URL = TRAINING_CONFIGURATION_URL;
 
     public static Retrofit getRetrofitInstance() {
-        //https://stackoverflow.com/questions/32514410/logging-with-retrofit-2
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
