@@ -1,9 +1,7 @@
 package ar.com.wolox.android.example.ui;
 
-
 import android.content.Intent;
 import android.content.SharedPreferences;
-
 import ar.com.wolox.android.R;
 import ar.com.wolox.android.example.ui.home.HomeActivity;
 import ar.com.wolox.android.example.ui.login.LoginActivity;
@@ -23,7 +21,7 @@ public class RootActivity extends WolmoActivity {
 
     @Override
     protected void init() {
-        if (OnUsernameLoginSaved())
+        if (isUsernameSaved())
             activity = HomeActivity.class;
         else
             activity = LoginActivity.class;
@@ -33,7 +31,7 @@ public class RootActivity extends WolmoActivity {
         startActivity(intent);
     }
 
-    private boolean OnUsernameLoginSaved() {
+    private boolean isUsernameSaved() {
         return getUsernameLogin() != null;
     }
 

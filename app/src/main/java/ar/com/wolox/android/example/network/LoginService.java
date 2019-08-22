@@ -17,9 +17,4 @@ public interface LoginService {
     @GET("users/")
     Call<List<User>> getUserLogin(
             @Query("email") String email);
-
-    @GET("users/{id}")
-    Call<User> getUserByCredentials(
-            @Query("email") String username,
-            @Query("password") String password);
 }
