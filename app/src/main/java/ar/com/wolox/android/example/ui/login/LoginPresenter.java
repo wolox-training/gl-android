@@ -13,12 +13,16 @@ import ar.com.wolox.android.example.model.User;
 import ar.com.wolox.android.example.network.LoginService;
 import ar.com.wolox.android.example.network.RetrofitInstance;
 import ar.com.wolox.wolmo.core.presenter.BasePresenter;
+import ar.com.wolox.wolmo.networking.retrofit.RetrofitServices;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginPresenter extends BasePresenter<LoginView> {
     private static final String SP_USERNAME_KEY = "username";
+
+    @Inject
+    RetrofitServices monitorServices;
 
     @Inject
     LoginPresenter() {
@@ -34,8 +38,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
 
     void doLogin(String emailField, String passwordField) {
         if (validationFields(emailField, passwordField)) {
-            LoginService usersService = RetrofitInstance.getRetrofitInstance().create(LoginService.class);
-            Call<List<User>> call = usersService.getUserLogin(emailField);
+            Call<List<User>> call = monitorServices.getService(LoginService.class).getUserLogin(emailField);
             call.enqueue(new Callback<List<User>>() {
 
                 @Override
