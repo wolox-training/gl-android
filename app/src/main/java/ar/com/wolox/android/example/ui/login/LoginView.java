@@ -10,4 +10,9 @@ interface LoginView {
     void displayPasswordFieldEmpty();
 
     void displayEmailFieldInvalid();
+
+    void displayLoginFailure();
+
+    void displayInvalidPassword();
+
 }

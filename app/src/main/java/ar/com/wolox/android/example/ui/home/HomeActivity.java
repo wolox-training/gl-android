@@ -8,7 +8,6 @@ public class HomeActivity extends WolmoActivity {
     @Override
     protected int layout() {
         return R.layout.activity_home;
-
     }
 
     @Override

@@ -24,5 +24,4 @@ public class HomeFragment extends WolmoFragment<HomePresenter> implements HomeVi
         startActivity(intent);
         return true;
     }
-
 }
