@@ -1,6 +1,7 @@
 package ar.com.wolox.android.example.di
 
 import ar.com.wolox.android.example.ui.RootActivity
+import ar.com.wolox.android.example.ui.RootFragment
 import ar.com.wolox.android.example.ui.home.HomeActivity
 import ar.com.wolox.android.example.ui.home.HomeFragment
 import ar.com.wolox.android.example.ui.login.LoginActivity
@@ -22,6 +23,9 @@ abstract class AppModule {
 
     @ContributesAndroidInjector
     internal abstract fun rootActivity(): RootActivity
+
+    @ContributesAndroidInjector
+    internal abstract fun rootFragment(): RootFragment
 
     @ContributesAndroidInjector
     internal abstract fun loginActivity(): LoginActivity
