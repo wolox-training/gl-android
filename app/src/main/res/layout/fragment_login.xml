@@ -75,6 +75,13 @@
         android:text="@string/login_button_signup"
         android:textColor="@color/wolox_white" />
 
+    <ProgressBar
+        android:id="@+id/vLoginProgressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible" />
+
     <TextView
         android:id="@+id/vTermsConditions"
         android:layout_width="match_parent"

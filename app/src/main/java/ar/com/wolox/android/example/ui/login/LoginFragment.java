@@ -5,6 +5,7 @@ import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.Objects;
@@ -17,6 +18,7 @@ import butterknife.OnClick;
 import butterknife.BindView;
 
 
+
 public class LoginFragment extends WolmoFragment<LoginPresenter> implements LoginView {
 
     @BindView(R.id.vLogInButton) Button vLogInButton;
@@ -24,6 +26,7 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements Logi
     @BindView(R.id.vLogInEmail) EditText vLogInEmail;
     @BindView(R.id.vLogInPassword) EditText vLogInPassword;
     @BindView(R.id.vTermsConditions) TextView vTermsConditions;
+    @BindView(R.id.vLoginProgressBar) ProgressBar vLoginProgressBar;
 
     @Override
     public int layout() {
@@ -65,6 +68,11 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements Logi
     }
 
     @Override
+    public void displayInvalidEmail() {
+        Toast.makeText(requireContext(), R.string.login_invalid_user, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void onLoginSuccess() {
         getPresenter().setPreferences(Objects.requireNonNull(getContext()), vLogInEmail.getText().toString());
         Intent intent = new Intent(getActivity(), HomeActivity.class);
@@ -84,5 +92,15 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements Logi
     @Override
     public void displayEmailFieldInvalid() {
         vLogInEmail.setError(getString(R.string.login_invalid_email));
+    }
+
+    @Override
+    public void startLoading() {
+        vLoginProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void completeLoading() {
+        vLoginProgressBar.setVisibility(View.INVISIBLE);
     }
 }

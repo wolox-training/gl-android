@@ -11,7 +11,6 @@ import javax.inject.Inject;
 import ar.com.wolox.android.R;
 import ar.com.wolox.android.example.model.User;
 import ar.com.wolox.android.example.network.LoginService;
-import ar.com.wolox.android.example.network.RetrofitInstance;
 import ar.com.wolox.wolmo.core.presenter.BasePresenter;
 import ar.com.wolox.wolmo.networking.retrofit.RetrofitServices;
 import retrofit2.Call;
@@ -37,17 +36,20 @@ public class LoginPresenter extends BasePresenter<LoginView> {
     }
 
     void doLogin(String emailField, String passwordField) {
+        getView().startLoading();
         if (validationFields(emailField, passwordField)) {
             Call<List<User>> call = monitorServices.getService(LoginService.class).getUserLogin(emailField);
             call.enqueue(new Callback<List<User>>() {
 
                 @Override
                 public void onResponse(@NotNull Call<List<User>> call, @NotNull Response<List<User>> response) {
+                    getView().completeLoading();
                     onResponseValidation(response, passwordField);
                 }
 
                 @Override
                 public void onFailure(@NotNull Call<List<User>> call, @NotNull Throwable t) {
+                    getView().completeLoading();
                     getView().displayLoginFailure();
                 }
             });
@@ -56,7 +58,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
 
     private void onResponseValidation(Response<List<User>> response, String passwordField) {
         if (Objects.requireNonNull(response.body()).isEmpty()) {
-            getView().displayEmailFieldInvalid();
+            getView().displayInvalidEmail();
         } else if (!response.body().get(0).getPassword().equals(passwordField)) {
             getView().displayInvalidPassword();
         } else {
