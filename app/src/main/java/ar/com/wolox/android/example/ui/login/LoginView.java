@@ -15,4 +15,10 @@ interface LoginView {
 
     void displayInvalidPassword();
 
+    void displayInvalidEmail();
+
+    void startLoading();
+
+    void completeLoading();
+
 }
