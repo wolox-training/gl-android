@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardCornerRadius="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/vItemImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="2dp" />
+
+        <ImageView
+            android:id="@+id/vEmotionImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/vTextTime"
+            android:layout_alignParentEnd="true"
+            android:padding="2dp"
+            android:src="@drawable/ic_like_on" />
+
+        <TextView
+            android:id="@+id/vTextInformation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/vTitleView"
+            android:layout_marginEnd="251dp"
+            android:layout_toStartOf="@+id/vEmotionImage"
+            android:layout_toEndOf="@+id/vItemImage"
+            android:text="Informacion"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/vTextTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:text="Fecha"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/vTitleView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/vItemImage"
+            android:text="Titulo"
+            android:textColor="@color/wolox_black"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

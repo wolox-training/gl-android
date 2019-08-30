@@ -1,14 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@color/cardview_light_background"
+    android:orientation="vertical"
+    tools:ignore="PrivateResource">
 
-    <TextView
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/vHomeWoloxLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/main_logo_padding"
+            android:layout_marginTop="@dimen/main_logo_padding"
+            android:scaleType="fitStart"
+            android:src="@drawable/wolox_logo" />
+
+        <TextView
+            android:id="@+id/vHomeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/main_logo_padding"
+            android:layout_marginTop="@dimen/main_logo_padding"
+            android:layout_marginBottom="@dimen/main_logo_padding"
+            android:text="@string/home_title"
+            android:textColor="@color/wolox_black"
+            android:textSize="@dimen/font_large"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/vTabLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/main_logo_padding"
+        android:layout_marginBottom="@dimen/main_logo_padding">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/vTabNews"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:icon="@drawable/ic_news_list_off"
+            android:text="@string/home_news" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/vTabProfile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:icon="@drawable/ic_profile_off"
+            android:text="@string/home_profile" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/vHomeRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/home_activity"
-        android:textSize="@dimen/font_big" />
+        android:padding="4dp"
+        android:scrollbars="vertical"
+        android:background="@color/wolox_white"/>
+
 </LinearLayout>
