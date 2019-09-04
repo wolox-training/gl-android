@@ -21,7 +21,6 @@ class HomeAdapter(private val vHomeListItems: ArrayList<HomeItem>, private var c
         var vTextInformation: TextView? = null
         var vTextTime: TextView? = null
         var vEmotionImage: ImageView? = null
-
         var view = itemView
         var listener: ClickListener? = null
 

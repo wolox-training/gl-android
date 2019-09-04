@@ -15,7 +15,8 @@
             android:id="@+id/vItemImage"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:padding="2dp" />
+            android:padding="2dp"
+            android:foreground="@drawable/photo_circle"/>
 
         <ImageView
             android:id="@+id/vEmotionImage"
