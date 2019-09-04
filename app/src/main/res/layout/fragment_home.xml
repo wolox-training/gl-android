@@ -43,9 +43,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/main_logo_padding"
-        android:layout_marginBottom="@dimen/main_logo_padding">
-
-    </com.google.android.material.tabs.TabLayout>
+        android:layout_marginBottom="@dimen/main_logo_padding" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vViewPagerFragmentHome"
