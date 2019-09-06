@@ -25,8 +25,8 @@ class HomeFragment : WolmoFragment<HomePresenter>(), HomeView {
 
         mFragmentHomePagerAdapter = SimpleFragmentPagerAdapter(childFragmentManager).apply {
             addFragments(
-                    Pair(mPageProfile, "Profile"),
-                    Pair(mPageNews, "News")
+                    Pair(mPageNews, "News"),
+                    Pair(mPageProfile, "Profile")
             )
         }
 
