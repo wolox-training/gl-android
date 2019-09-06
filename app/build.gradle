@@ -161,4 +161,7 @@ dependencies {
 
     //Constraint Layout
     implementation "com.android.support.constraint:constraint-layout:$constraint_layout"
+
+    //Pretty Time
+    implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
 }

@@ -34,6 +34,8 @@
     <string name="home_news">NEWS</string>
     <string name="home_news_fragment">News</string>
     <string name="signup_activity">SIGN UP</string>
+    <string name="photo_item">Photo Item</string>
+    <string name="like_item">Like Item</string>
 
 
 </resources>

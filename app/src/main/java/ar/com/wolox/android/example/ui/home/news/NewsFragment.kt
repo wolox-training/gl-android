@@ -10,14 +10,20 @@ import javax.inject.Inject
 
 class NewsFragment @Inject constructor() : WolmoFragment<NewsPresenter>(), NewsView {
 
-    private val vHomeListItems = arrayListOf<NewsItem>()
+    private var vHomeListItems = arrayListOf<News>()
     private lateinit var vAdapter: NewsAdapter
 
     override fun showError() {
     }
 
     override fun showNews(body: List<News>) {
-        vAdapter = NewsAdapter(body)
+
+        vHomeListItems = ArrayList(body)
+        vHomeListItems.addAll(vHomeListItems)
+        vHomeListItems.addAll(vHomeListItems)
+        vHomeListItems.addAll(vHomeListItems)
+
+        vAdapter = NewsAdapter(vHomeListItems)
         vNewsRecyclerView.adapter = vAdapter
         val vLayoutManager = LinearLayoutManager(requireContext())
         vNewsRecyclerView.layoutManager = vLayoutManager
@@ -42,6 +48,7 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsPresenter>(), NewsV
     }
 
     fun createHomeListItems() {
+        /**
         vHomeListItems.add(NewsItem(R.drawable.ic_like_off, "Titulo1", "Texto1", "Tiempo1", R.drawable.ic_like_off))
         vHomeListItems.add(NewsItem(R.drawable.ic_like_on, "Titulo2", "Texto2", "Tiempo2", R.drawable.ic_like_on))
         vHomeListItems.add(NewsItem(R.drawable.ic_like_off, "Titulo3", "Texto3", "Tiempo3", R.drawable.ic_like_off))
@@ -58,6 +65,7 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsPresenter>(), NewsV
         vHomeListItems.add(NewsItem(R.drawable.ic_like_on, "Titulo14", "Texto14", "Tiempo14", R.drawable.ic_like_on))
         vHomeListItems.add(NewsItem(R.drawable.ic_like_off, "Titulo15", "Texto15", "Tiempo15", R.drawable.ic_like_off))
         vHomeListItems.add(NewsItem(R.drawable.ic_like_on, "Titulo16", "Texto16", "Tiempo16", R.drawable.ic_like_on))
+     **/
     }
 
     fun buildRecyclerView() {

@@ -27,8 +27,4 @@ class NewsPresenter @Inject constructor(private val monitorServices: RetrofitSer
             }
         })
     }
-
-    // fun onAddNewsButtonPressed() = view.goAddNews()
-
-    // fun onPullDownRefresh() = view.nothingNewToShow()
 }

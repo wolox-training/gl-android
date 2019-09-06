@@ -1,63 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:clickable="true"
-    android:foreground="?attr/selectableItemBackground"
-    app:cardCornerRadius="4dp">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/vItemNewTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/news_margin_default"
+        android:layout_marginTop="@dimen/news_margin_default"
+        android:layout_marginBottom="@dimen/news_margin_default"
+        android:maxLines="1"
+        android:textAlignment="gravity"
+        android:textAllCaps="false"
+        android:textSize="@dimen/font_medium_extra"
+        android:textStyle="bold"
+        android:verticalScrollbarPosition="defaultPosition"
+        app:layout_constraintBottom_toTopOf="@+id/vMessage"
+        app:layout_constraintEnd_toStartOf="@+id/vItemNewTime"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/vItemNewImage"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UnknownIdInLayout"
+        tools:text="Title Example" />
+
+    <TextView
+        android:id="@+id/vItemNewTextInformation"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/news_margin_default"
+        android:layout_marginTop="@dimen/news_margin_default"
+        android:layout_marginBottom="@dimen/news_margin_default"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:padding="2dp"
+        android:textSize="@dimen/font_medium_more"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/vItemNewEmotionImage"
+        app:layout_constraintStart_toEndOf="@+id/vItemNewImage"
+        app:layout_constraintTop_toBottomOf="@+id/vItemNewTitle"
+        tools:text="Message Example" />
+
+    <ImageView
+        android:id="@+id/vItemNewImage"
+        android:layout_width="@dimen/news_item_img_size"
+        android:layout_height="@dimen/news_item_img_size"
+        android:layout_marginStart="@dimen/news_item_img_margin"
+        android:layout_marginBottom="@dimen/news_margin_default"
+        android:layout_marginTop="@dimen/news_margin_default"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toBottomOf="@+id/vItemNewTime"
+        android:contentDescription="@string/photo_item" />
+
+
+    <ImageView
+        android:id="@+id/vItemNewEmotionImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/news_margin_default"
+        android:layout_marginBottom="@dimen/news_margin_default"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_like_off"
+        android:contentDescription="@string/like_item" />
+
+    <TextView
+        android:id="@+id/vItemNewTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/news_margin_default"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/vItemNewEmotionImage"
+        app:layout_constraintEnd_toEndOf="@+id/vItemNewEmotionImage"
+        app:layout_constraintStart_toStartOf="@+id/vItemNewEmotionImage"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="Date Example" />
+
+    <View
+        android:id="@+id/vSeparator"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="@dimen/spacing_tiny"
+        android:layout_alignBottom="@+id/vItemNewTitle"
+        android:layout_marginBottom="@dimen/news_separator_margin_bottom"
+        android:background="?android:attr/listDivider"
+        tools:ignore="MissingConstraints" />
 
-        <ImageView
-            android:id="@+id/vItemNewImage"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:padding="2dp"
-            android:background="@drawable/photo_circle"
-            android:src="@color/wolox_blue"/>
-
-        <ImageView
-            android:id="@+id/vItemNewEmotionImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/vItemNewTime"
-            android:layout_alignParentEnd="true"
-            android:padding="2dp"
-            android:src="@drawable/ic_like_on" />
-
-        <TextView
-            android:id="@+id/vItemNewTextInformation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/vItemNewTitle"
-            android:layout_marginEnd="251dp"
-            android:layout_toStartOf="@+id/vItemNewEmotionImage"
-            android:layout_toEndOf="@+id/vItemNewImage"
-            android:text="Informacion"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/vItemNewTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:text="Fecha"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/vItemNewTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/vItemNewImage"
-            android:text="Titulo"
-            android:textColor="@color/wolox_black"
-            android:textSize="20sp" />
-
-    </RelativeLayout>
-
-</androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
