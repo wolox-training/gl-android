@@ -12,10 +12,8 @@ import javax.inject.Inject
 
 class HomeFragment : WolmoFragment<HomePresenter>(), HomeView {
 
-    @Inject
-    internal lateinit var mPageNews: NewsFragment
-    @Inject
-    internal lateinit var mPageProfile: ProfileFragment
+    @Inject internal lateinit var mPageNews: NewsFragment
+    @Inject internal lateinit var mPageProfile: ProfileFragment
     private lateinit var mFragmentHomePagerAdapter: SimpleFragmentPagerAdapter
 
     override fun layout(): Int {

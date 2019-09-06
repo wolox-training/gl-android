@@ -4,11 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:background="@color/cardview_light_background"
     android:orientation="vertical"
     tools:ignore="PrivateResource">
-
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -48,25 +46,6 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vViewPagerFragmentHome"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/vHomeRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        android:background="@color/wolox_white"/>
-
-    <com.melnykov.fab.FloatingActionButton
-        android:id="@+id/vFloatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="@dimen/static_spacing_medium_extra"
-        fab:fab_colorNormal="@color/wolox_green"
-        fab:fab_colorPressed="@color/wolox_white"
-        fab:fab_colorRipple="@color/wolox_blue"
-        fab:fab_shadow="false"
-        android:src="@drawable/ic_news_list_off"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>
