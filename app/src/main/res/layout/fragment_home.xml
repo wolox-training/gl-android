@@ -9,7 +9,7 @@
     tools:ignore="PrivateResource">
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -37,14 +37,14 @@
     </LinearLayout>
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/vTabFragmentHome"
+        android:id="@+id/vHomeTabLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/main_logo_padding"
         android:layout_marginBottom="@dimen/main_logo_padding" />
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/vViewPagerFragmentHome"
+        android:id="@+id/vHomeViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

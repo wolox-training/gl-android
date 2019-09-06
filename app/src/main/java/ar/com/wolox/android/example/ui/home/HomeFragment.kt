@@ -12,35 +12,35 @@ import javax.inject.Inject
 
 class HomeFragment : WolmoFragment<HomePresenter>(), HomeView {
 
-    @Inject internal lateinit var mPageNews: NewsFragment
-    @Inject internal lateinit var mPageProfile: ProfileFragment
-    private lateinit var mFragmentHomePagerAdapter: SimpleFragmentPagerAdapter
+    @Inject internal lateinit var pageNews: NewsFragment
+    @Inject internal lateinit var pageProfile: ProfileFragment
+    private lateinit var fragmentHomePagerAdapter: SimpleFragmentPagerAdapter
 
     override fun layout(): Int {
         return R.layout.fragment_home
     }
 
     override fun init() {
-        vTabFragmentHome.setupWithViewPager(vViewPagerFragmentHome)
+        vHomeTabLayout.setupWithViewPager(vHomeViewPager)
 
-        mFragmentHomePagerAdapter = SimpleFragmentPagerAdapter(childFragmentManager).apply {
+        fragmentHomePagerAdapter = SimpleFragmentPagerAdapter(childFragmentManager).apply {
             addFragments(
-                    Pair(mPageNews, "News"),
-                    Pair(mPageProfile, "Profile")
+                    Pair(pageNews, getString(R.string.home_news_fragment)),
+                    Pair(pageProfile, getString(R.string.hhome_profile_fragment))
             )
         }
 
-        vViewPagerFragmentHome.apply {
-            adapter = mFragmentHomePagerAdapter
+        vHomeViewPager.apply {
+            adapter = fragmentHomePagerAdapter
             addOnPageChangeListener(
-                    TabLayout.TabLayoutOnPageChangeListener(vTabFragmentHome)
+                    TabLayout.TabLayoutOnPageChangeListener(vHomeTabLayout)
             )
         }
         onTabInit()
     }
 
     private fun onTabInit() {
-        vTabFragmentHome.run {
+        vHomeTabLayout.run {
             getTabAt(0)!!.setIcon(R.drawable.ic_news_selected)
             getTabAt(1)!!.setIcon(R.drawable.ic_profile_selected)
         }
