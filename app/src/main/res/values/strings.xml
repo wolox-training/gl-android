@@ -28,6 +28,12 @@
     <string name="login_failed">Algo salió mal … ¡Intenta más tarde!</string>
     <string name="password_required">Password is Required</string>
     <string name="home_activity">HOME</string>
+    <string name="home_title">Wolox</string>
+    <string name="home_profile">PROFILE</string>
+    <string name="hhome_profile_fragment">Profile</string>
+    <string name="home_news">NEWS</string>
+    <string name="home_news_fragment">News</string>
     <string name="signup_activity">SIGN UP</string>
+
 
 </resources>

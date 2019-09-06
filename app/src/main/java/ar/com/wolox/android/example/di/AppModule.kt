@@ -4,6 +4,8 @@ import ar.com.wolox.android.example.ui.RootActivity
 import ar.com.wolox.android.example.ui.RootFragment
 import ar.com.wolox.android.example.ui.home.HomeActivity
 import ar.com.wolox.android.example.ui.home.HomeFragment
+import ar.com.wolox.android.example.ui.home.news.NewsFragment
+import ar.com.wolox.android.example.ui.home.profile.ProfileFragment
 import ar.com.wolox.android.example.ui.login.LoginActivity
 import ar.com.wolox.android.example.ui.login.LoginFragment
 import ar.com.wolox.android.example.ui.signup.SignUpActivity
@@ -20,6 +22,12 @@ abstract class AppModule {
 
     @ContributesAndroidInjector
     internal abstract fun homeFragment(): HomeFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun newsFragment(): NewsFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun profileFragment(): ProfileFragment
 
     @ContributesAndroidInjector
     internal abstract fun rootActivity(): RootActivity

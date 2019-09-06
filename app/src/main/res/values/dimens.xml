@@ -47,4 +47,5 @@
 
     <!-- Add your custom dimens here -->
     <dimen name="login_cover_logo_height">112dp</dimen>
+    <dimen name="main_logo_padding">16dp</dimen>
 </resources>
