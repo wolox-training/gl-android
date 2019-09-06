@@ -1,30 +1,44 @@
 package ar.com.wolox.android.example.ui.home.news
 
 import android.content.Intent
-import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import ar.com.wolox.android.R
+import ar.com.wolox.android.example.model.News
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
 import kotlinx.android.synthetic.main.fragment_news.*
-import kotlinx.android.synthetic.main.fragment_news_recycler_item.*
 import javax.inject.Inject
 
 class NewsFragment @Inject constructor() : WolmoFragment<NewsPresenter>(), NewsView {
 
-    val vHomeListItems = arrayListOf<NewsItem>()
-    private var vRecyclerViewList: RecyclerView? = null
-    private var vAdapter: NewsAdapter? = null
-    private var vLayoutManager: RecyclerView.LayoutManager? = null
+    private val vHomeListItems = arrayListOf<NewsItem>()
+    private lateinit var vAdapter: NewsAdapter
 
-    override fun layout(): Int {
-        return R.layout.fragment_news
+    override fun showError() {
     }
 
+    override fun showNews(body: List<News>) {
+        vAdapter = NewsAdapter(body)
+        vNewsRecyclerView.adapter = vAdapter
+        val vLayoutManager = LinearLayoutManager(requireContext())
+        vNewsRecyclerView.layoutManager = vLayoutManager
+    }
+
+    override fun layout() = R.layout.fragment_news
+
     override fun init() {
-        createHomeListItems()
-        buildRecyclerView()
+
+        // createHomeListItems()
+        // buildRecyclerView()
+
+        /**
+        ver_fabi.setOnClickListener {
+        presenter.onAddNewsButtonPressed()
+        }
+
+        vSwipeRefreshLayout.setOnRefreshListener {
+        presenter.onPullDownRefresh()
+        }
+         **/
     }
 
     fun createHomeListItems() {
@@ -47,27 +61,22 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsPresenter>(), NewsV
     }
 
     fun buildRecyclerView() {
+        /**
         vRecyclerViewList = vNewsRecyclerView
         vRecyclerViewList!!.setHasFixedSize(true)
         vLayoutManager = LinearLayoutManager(requireContext())
 
         vAdapter = vHomeListItems?.let {
-            NewsAdapter(it, object : ClickListener {
-                override fun onClick(view: View, position: Int) {
-                    Toast.makeText(requireContext(), vHomeListItems[position].getTitleResource(), Toast.LENGTH_SHORT).show()
-                }
-            })
+        NewsAdapter(it, object : ClickListener {
+        override fun onClick(view: View, position: Int) {
+        Toast.makeText(requireContext(), vHomeListItems[position].getTitleResource(), Toast.LENGTH_SHORT).show()
         }
+        })
+        }
+
         vRecyclerViewList?.layoutManager = vLayoutManager
         vRecyclerViewList?.adapter = vAdapter
-    }
-
-    override fun setListeners() {
-        vItemImage
-        vTitleView
-        vTextInformation
-        vTextTime
-        vEmotionImage
+         **/
     }
 
     override fun onBackPressed(): Boolean {
@@ -76,4 +85,17 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsPresenter>(), NewsV
         startActivity(intent)
         return true
     }
+
+    /**
+    override fun nothingNewToShow() {
+    vSwipeRefreshLayout.isRefreshing = false
+    Toast.makeText(context, R.string.nothing_new_to_show, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun goAddNews() {
+    val intent = Intent(context, NewsCreationActivity::class.java)
+    startActivity(intent)
+    }
+
+     **/
 }

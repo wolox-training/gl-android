@@ -6,52 +6,34 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-
-import java.util.ArrayList
-
 import ar.com.wolox.android.R
-import kotlinx.android.synthetic.main.fragment_news_recycler_item.view.*
+import ar.com.wolox.android.example.model.News
+import kotlinx.android.synthetic.main.item_news.view.*
 
-class NewsAdapter(private val vNewsListItems: ArrayList<NewsItem>, private var clickListener: ClickListener) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+class NewsAdapter(private val vNewsListItems: List<News>) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
-    class NewsViewHolder(itemView: View, listener: ClickListener) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var vItemImage: ImageView? = null
-        var vTitleView: TextView? = null
-        var vTextInformation: TextView? = null
-        var vTextTime: TextView? = null
-        var vEmotionImage: ImageView? = null
-        var view = itemView
-        var listener: ClickListener? = null
-
-        init {
-            vItemImage = itemView.vItemImage
-            vTitleView = itemView.vTitleView
-            vTextInformation = itemView.vTextInformation
-            vTextTime = itemView.vTextTime
-            vEmotionImage = itemView.vEmotionImage
-
-            this.listener = listener
-            view.setOnClickListener(this)
-        }
-
-        override fun onClick(view: View?) {
-            this.listener?.onClick(view!!, adapterPosition)
-        }
+        val vItemImage: ImageView = itemView.vItemNewImage
+        val vTitleView: TextView = itemView.vItemNewTitle
+        val vTextInformation: TextView = itemView.vItemNewTextInformation
+        val vTextTime: TextView = itemView.vItemNewTime
+        val vEmotionImage: ImageView = itemView.vItemNewEmotionImage
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_news_recycler_item, parent, false)
-        return NewsViewHolder(view, clickListener)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_news, parent, false)
+        return NewsViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         val currentItem = vNewsListItems[position]
-        holder.vItemImage?.setImageResource(currentItem.getImageResource())
-        holder.vTitleView?.text = currentItem.getTitleResource()
-        holder.vTextInformation?.text = currentItem.getTextInformationResource()
-        holder.vTextTime?.text = currentItem.getTimeResource()
-        holder.vEmotionImage?.setImageResource(currentItem.getEmotionImage())
+
+        // holder.vItemImage.setImageResource(currentItem.picture)
+        holder.vTitleView.text = currentItem.title
+        holder.vTextInformation.text = currentItem.text
+        holder.vTextTime.text = currentItem.cratedAt
+        // holder.vEmotionImage.setImageResource(currentItem.getEmotionImage())
     }
 
     override fun getItemCount(): Int {
