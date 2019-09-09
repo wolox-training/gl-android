@@ -15,4 +15,6 @@ data class News(
     val likes: List<Int>
 ) {
     val readableCreationTime get() = PrettyTime().format(DateTime(createdAt).toDate())!!
+
+    val formatPicture get() = picture.replace("http://", "https://")
 }

@@ -20,7 +20,8 @@
             android:layout_marginStart="@dimen/main_logo_padding"
             android:layout_marginTop="@dimen/main_logo_padding"
             android:scaleType="fitStart"
-            android:src="@drawable/wolox_logo" />
+            android:src="@drawable/wolox_logo"
+            android:contentDescription="TODO" />
 
         <TextView
             android:id="@+id/vHomeTitle"
@@ -39,9 +40,7 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/vHomeTabLayout"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/main_logo_padding"
-        android:layout_marginBottom="@dimen/main_logo_padding" />
+        android:layout_height="wrap_content" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vHomeViewPager"

@@ -34,7 +34,7 @@ class NewsAdapter(private val vNewsListItems: List<News>) : RecyclerView.Adapter
         holder.vTextTime.text = currentItem.readableCreationTime
 
         Glide.with(holder.itemView.context)
-                .load(currentItem.picture)
+                .load(currentItem.formatPicture)
                 .circleCrop()
                 .into(holder.vItemImage)
 
