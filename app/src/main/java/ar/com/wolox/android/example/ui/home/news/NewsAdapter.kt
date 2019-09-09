@@ -37,8 +37,6 @@ class NewsAdapter(private val vNewsListItems: List<News>) : RecyclerView.Adapter
                 .load(currentItem.formatPicture)
                 .circleCrop()
                 .into(holder.vItemImage)
-
-        // holder.vEmotionImage.setImageResource(currentItem.getEmotionImage())
     }
 
     override fun getItemCount(): Int {
