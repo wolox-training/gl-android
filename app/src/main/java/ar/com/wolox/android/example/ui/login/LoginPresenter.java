@@ -18,7 +18,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginPresenter extends BasePresenter<LoginView> {
+
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
+
     private static final String SP_USERNAME_KEY = "username";
+    private static final String USER_ID = "userId";
 
     @Inject
     RetrofitServices monitorServices;
@@ -28,10 +33,11 @@ public class LoginPresenter extends BasePresenter<LoginView> {
     }
 
     @SuppressLint("CommitPrefEdits")
-    void setPreferences(Context context, String emailField) {
-        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.login_preferences_name), Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
+    void setPreferences(Context context, String emailField, Integer userId) {
+        sharedPref = context.getSharedPreferences(context.getString(R.string.login_preferences_name), Context.MODE_PRIVATE);
+        editor = sharedPref.edit();
         editor.putString(SP_USERNAME_KEY, emailField);
+        editor.putInt(USER_ID, userId);
         editor.apply();
     }
 
@@ -62,9 +68,11 @@ public class LoginPresenter extends BasePresenter<LoginView> {
         } else if (!response.body().get(0).getPassword().equals(passwordField)) {
             getView().displayInvalidPassword();
         } else {
-            getView().onLoginSuccess();
+            getView().onLoginSuccess(response.body().get(0).getId());
         }
     }
+
+
 
     private boolean validationFields(String emailField, String passwordField) {
         if (emailField.isEmpty())

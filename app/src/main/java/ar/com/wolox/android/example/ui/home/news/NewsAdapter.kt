@@ -11,7 +11,7 @@ import ar.com.wolox.android.example.model.News
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_news.view.*
 
-class NewsAdapter(private val vNewsListItems: List<News>) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+class NewsAdapter(private val vNewsListItems: List<News>, private val userId: Int) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
     class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val vItemImage: ImageView = itemView.vItemNewImage
@@ -37,6 +37,11 @@ class NewsAdapter(private val vNewsListItems: List<News>) : RecyclerView.Adapter
                 .load(currentItem.formatPicture)
                 .circleCrop()
                 .into(holder.vItemImage)
+
+        if (currentItem.likes.contains(userId.toInt()))
+            holder.vEmotionImage.setImageResource(R.drawable.ic_like_on)
+        else
+            holder.vEmotionImage.setImageResource(R.drawable.ic_like_off)
     }
 
     override fun getItemCount(): Int {

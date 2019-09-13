@@ -1,8 +1,9 @@
 package ar.com.wolox.android.example.ui.home.news
 
-import android.content.Intent
+import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import ar.com.wolox.android.R
 import ar.com.wolox.android.example.model.News
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
@@ -13,34 +14,56 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsPresenter>(), NewsV
 
     private var vHomeListItems = arrayListOf<News>()
     private lateinit var vAdapter: NewsAdapter
-
-    override fun showError() {
-    }
-
-    override fun showNews(body: List<News>) {
-
-        // Added sample data to test the view from Heroku
-        vHomeListItems = ArrayList(body)
-        vHomeListItems.addAll(vHomeListItems)
-        vHomeListItems.addAll(vHomeListItems)
-        vHomeListItems.addAll(vHomeListItems)
-
-        vAdapter = NewsAdapter(vHomeListItems)
-        vNewsRecyclerView.adapter = vAdapter
-        val vLayoutManager = LinearLayoutManager(requireContext())
-        vNewsRecyclerView.layoutManager = vLayoutManager
-        vNewsRecyclerView.addItemDecoration(DividerItemDecoration(vNewsRecyclerView.context, vLayoutManager.orientation))
-    }
+    private lateinit var vLayoutManager: LinearLayoutManager
 
     override fun layout() = R.layout.fragment_news
 
     override fun init() {
+
+        vLayoutManager = LinearLayoutManager(requireContext())
+        LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        vNewsRecyclerView.setHasFixedSize(true)
+        vNewsRecyclerView.addItemDecoration(DividerItemDecoration(vNewsRecyclerView.context, vLayoutManager.orientation))
+        vNewsRecyclerView.layoutManager = vLayoutManager
     }
 
-    override fun onBackPressed(): Boolean {
-        val intent = Intent(Intent.ACTION_MAIN)
-        intent.addCategory(Intent.CATEGORY_HOME)
-        startActivity(intent)
-        return true
+    override fun showLoading(case: Boolean) {
+        vNewsSwipeRefreshLayout.isRefreshing = case
+    }
+
+    override fun showError() {
+        Toast.makeText(context, R.string.fail_generic, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showConnectionError() {
+        Toast.makeText(context, R.string.fail_loading_news, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showNews(body: List<News>) {
+        vHomeListItems = ArrayList(body)
+        vAdapter = NewsAdapter(vHomeListItems, presenter.getUserId(requireContext()))
+        vNewsRecyclerView.adapter = vAdapter
+        vAdapter.notifyDataSetChanged()
+    }
+
+    override fun setListeners() {
+        vNewsSwipeRefreshLayout.setOnRefreshListener {
+            presenter.onRefreshNews()
+        }
+
+        vNewsRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+
+                val totalItemCount = vLayoutManager.itemCount
+                val lastVisibleItemPosition = vLayoutManager.findLastVisibleItemPosition()
+                val findFirstCompletelyVisibleItemPosition = vLayoutManager.findFirstCompletelyVisibleItemPosition()
+                val findFirstVisibleItemPosition = vLayoutManager.findFirstVisibleItemPosition()
+
+                if (lastVisibleItemPosition + 1 >= totalItemCount) {
+                    presenter.getAddedNews()
+                }
+            }
+        })
     }
 }

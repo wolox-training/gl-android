@@ -6,5 +6,9 @@ interface NewsView {
 
     fun showError()
 
+    fun showConnectionError()
+
     fun showNews(body: List<News>)
+
+    fun showLoading(case: Boolean)
 }

@@ -17,9 +17,7 @@ public class User {
     @SerializedName("name") private String name;
     @SerializedName("phone") private String phone;
 
-    public Integer getId() {
-        return id;
-    }
+    public Integer getId() { return id; }
 
     public String getUsername() {
         return username;
