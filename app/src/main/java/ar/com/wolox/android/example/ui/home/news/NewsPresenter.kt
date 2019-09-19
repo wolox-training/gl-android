@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import ar.com.wolox.android.R
 import ar.com.wolox.android.example.model.News
 import ar.com.wolox.android.example.network.NewsServices
+import ar.com.wolox.android.example.utils.UserSession
 import javax.inject.Inject
 import ar.com.wolox.wolmo.core.presenter.BasePresenter
 import ar.com.wolox.wolmo.networking.retrofit.RetrofitServices
@@ -13,7 +14,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import kotlin.collections.ArrayList
 
-class NewsPresenter @Inject constructor(private val monitorServices: RetrofitServices) : BasePresenter<NewsView>() {
+class NewsPresenter @Inject constructor(private val monitorServices: RetrofitServices, private val userSession: UserSession) : BasePresenter<NewsView>() {
 
     private val USER_ID = "userId"
 
@@ -81,5 +82,9 @@ class NewsPresenter @Inject constructor(private val monitorServices: RetrofitSer
     internal fun getUserId(context: Context): Int {
         sharedPref = context.getSharedPreferences(context.getString(R.string.login_preferences_name), Context.MODE_PRIVATE)
         return sharedPref.getInt(USER_ID, 0)
+    }
+
+    fun onNewsClicked(new: News) {
+        view.showNewsDetails(new, userSession.userId)
     }
 }
