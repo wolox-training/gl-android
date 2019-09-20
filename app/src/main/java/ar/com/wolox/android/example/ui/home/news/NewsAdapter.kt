@@ -49,7 +49,7 @@ class NewsAdapter(private val vNewsListItems: List<News>, private val userId: In
         val vTitleView: TextView = itemView.vItemNewTitle
         val vTextInformation: TextView = itemView.vItemNewTextInformation
         val vTextTime: TextView = itemView.vItemNewTime
-        val vEmotionImage: ImageView = itemView.vNewEmotionImage
+        val vEmotionImage: ImageView = itemView.vNewsDetailsEmotionImage
         fun onItemClicked(onNewsClickListener: OnNewsClickListener, currentItem: News) {
             itemView.onClickListener { onNewsClickListener.invoke(currentItem) }
         }

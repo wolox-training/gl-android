@@ -39,17 +39,17 @@ class NewsDetailsFragment @Inject constructor() : WolmoFragment<NewsDetailsPrese
 
     // Configuro mi News y seteo los parametros de presentacion
     private fun configuratorNews(currentNews: News, username: String) {
+
         vNewDetailsTitle.text = currentNews.title
-
-        Glide.with(requireContext())
-                .load(currentNews.formatPicture)
-                .circleCrop()
-                .into(vNewsDetailsBackgroundNew)
-
         vNewDetailsTime.text = currentNews.readableCreationTime
-
         vNewDetailsTextInformation.text = currentNews.text
+        Glide.with(requireContext()).load(currentNews.formatPicture).into(vNewsDetailsBackgroundNew)
+        if (currentNews.likes.contains(username.toInt()))
+            vNewsDetailsEmotionImage.setImageResource(R.drawable.ic_like_on)
+        else
+            vNewsDetailsEmotionImage.setImageResource(R.drawable.ic_like_off)
     }
+
     override fun showLoading(case: Boolean) {
         vNewsSwipeRefreshLayout.isRefreshing = case
     }
@@ -68,7 +68,7 @@ class NewsDetailsFragment @Inject constructor() : WolmoFragment<NewsDetailsPrese
         }
 
         /**vNewsDetailsSwipeRefreshLayout.setOnRefreshListener {
-            presenter.onRefreshNewsDetails(id)
+        presenter.onRefreshNewsDetails(id)
 
         }
          */
