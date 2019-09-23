@@ -4,30 +4,32 @@ import android.os.Bundle
 import android.widget.Toast
 import ar.com.wolox.android.R
 import ar.com.wolox.android.example.model.News
+import ar.com.wolox.android.example.utils.onClickListener
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.fragment_news.*
 import kotlinx.android.synthetic.main.fragment_news_details.*
 import javax.inject.Inject
+import kotlinx.android.synthetic.main.fragment_news_details.vNewsDetailsEmotionImage
 
 class NewsDetailsFragment @Inject constructor() : WolmoFragment<NewsDetailsPresenter>(), NewsDetailsView {
 
     private lateinit var currentNews: News
-    private lateinit var username: String
+    private var username: Int? = null
 
     override fun layout() = R.layout.fragment_news_details
 
     override fun init() {
         currentNews = arguments!!.getSerializable(NEWS_ID) as News
-        username = arguments!!.getSerializable(USER_ID) as String
-        configuratorNews(currentNews, username)
+        username = arguments!!.getSerializable(USER_ID) as Int
+        newsConfigurator(currentNews, username!!)
+        presenter.setNewDetailId(currentNews.id)
     }
 
     companion object {
-        private val NEWS_ID = "newsKey"
-        private val USER_ID = "usersKey"
+        private val NEWS_ID = "newsId"
+        private val USER_ID = "userId"
 
-        fun newInstance(currentNews: News, user: String): NewsDetailsFragment {
+        fun newInstance(currentNews: News, user: Int): NewsDetailsFragment {
             val args = Bundle()
             args.putSerializable(NEWS_ID, currentNews)
             args.putSerializable(USER_ID, user)
@@ -37,21 +39,17 @@ class NewsDetailsFragment @Inject constructor() : WolmoFragment<NewsDetailsPrese
         }
     }
 
-    // Configuro mi News y seteo los parametros de presentacion
-    private fun configuratorNews(currentNews: News, username: String) {
-
+    private fun newsConfigurator(currentNews: News, username: Int) {
         vNewDetailsTitle.text = currentNews.title
         vNewDetailsTime.text = currentNews.readableCreationTime
         vNewDetailsTextInformation.text = currentNews.text
         Glide.with(requireContext()).load(currentNews.formatPicture).into(vNewsDetailsBackgroundNew)
-        if (currentNews.likes.contains(username.toInt()))
-            vNewsDetailsEmotionImage.setImageResource(R.drawable.ic_like_on)
-        else
-            vNewsDetailsEmotionImage.setImageResource(R.drawable.ic_like_off)
+        vNewsDetailsEmotionImage.setImageResource(R.drawable.ic_like_selector_large)
+        vNewsDetailsEmotionImage.isSelected = currentNews.likes.contains(username)
     }
 
     override fun showLoading(case: Boolean) {
-        vNewsSwipeRefreshLayout.isRefreshing = case
+        vNewsDetailsSwipeRefreshLayout.isRefreshing = case
     }
 
     override fun showError() {
@@ -63,18 +61,25 @@ class NewsDetailsFragment @Inject constructor() : WolmoFragment<NewsDetailsPrese
     }
 
     override fun setListeners() {
-        vNewsDetailsBackButton.setOnClickListener {
-            activity?.onBackPressed()
+        vNewsDetailsSwipeRefreshLayout.setOnRefreshListener {
+            presenter.onRefreshNewsDetails()
         }
 
-        /**vNewsDetailsSwipeRefreshLayout.setOnRefreshListener {
-        presenter.onRefreshNewsDetails(id)
-
+        vNewsDetailsBackButton.onClickListener {
+            requireActivity().onBackPressed()
         }
-         */
+
+        vNewsDetailsEmotionImage.onClickListener {
+            presenter.changeLikesStatus(username)
+        }
     }
 
-    override fun showNew(body: News) {
-        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
+    override fun showNewsDetailsToLikesUpdates(likes: ArrayList<Int>) {
+        currentNews.likes = likes
+        vNewsDetailsEmotionImage.isSelected = currentNews.likes.contains(username)
+    }
+
+    override fun showNewsDetails(newDetails: News) {
+        newsConfigurator(newDetails, username!!)
     }
 }

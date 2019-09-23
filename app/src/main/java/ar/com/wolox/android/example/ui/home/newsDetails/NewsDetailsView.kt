@@ -10,5 +10,7 @@ interface NewsDetailsView {
 
     fun showConnectionError()
 
-    fun showNew(body: News)
+    fun showNewsDetails(newDetails: News)
+
+    fun showNewsDetailsToLikesUpdates(likes: ArrayList<Int>)
 }

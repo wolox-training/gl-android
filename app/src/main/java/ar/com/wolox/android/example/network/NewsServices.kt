@@ -11,5 +11,5 @@ interface NewsServices {
     fun getNews(): Call<List<News>>
 
     @GET("/news")
-    fun getNewsDetails(@Query("id") newsDetailsIdValue: Int): Call<List<News>>
+    fun getNewsDetails(@Query("id") newsDetailsId: Int): Call<List<News>>
 }

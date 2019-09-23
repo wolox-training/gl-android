@@ -11,32 +11,57 @@ import javax.inject.Inject
 
 class NewsDetailsPresenter @Inject constructor(private val monitorServices: RetrofitServices) : BasePresenter<NewsDetailsView>() {
 
-    private lateinit var newDetails: News
-
+    private var newId: Int = 0
     private var isLoading: Boolean = true
         set(value) {
             field = value
             view.showLoading(value)
         }
 
-    fun onRefreshNewsDetails(id: Int) {
-        isLoading = true
-        getNew(id)
+    fun setNewDetailId(id: Int) {
+        newId = id
     }
 
-    private fun getNew(id: Int) {
+    fun changeLikesStatus(username: Int?) {
         isLoading = true
 
-        val call = monitorServices.getService(NewsServices::class.java).getNewsDetails(id)
+        val call = monitorServices.getService(NewsServices::class.java).getNewsDetails(newId)
         call.enqueue(object : Callback<List<News>> {
             override fun onFailure(call: Call<List<News>>, t: Throwable) {
-                view.showError()
+                view.showConnectionError()
                 isLoading = false
             }
-
             override fun onResponse(call: Call<List<News>>, response: Response<List<News>>) {
-                newDetails = requireNotNull(response.body())[0]
-                view.showNew(newDetails)
+
+                // Simulated Post like change
+                val new = response.body()!!.first()
+                val position = new.likes.indexOf(username)
+                if (position == -1)
+                    new.likes.add(username!!)
+                else
+                    new.likes.removeAt(position)
+                // Update view from simulated change
+
+                view.showNewsDetailsToLikesUpdates(response.body()!!.first().likes)
+                isLoading = false
+            }
+        })
+    }
+
+    fun onRefreshNewsDetails() {
+            isLoading = true
+            getNewDetails()
+    }
+
+    private fun getNewDetails() {
+        val call = monitorServices.getService(NewsServices::class.java).getNewsDetails(newId)
+        call.enqueue(object : Callback<List<News>> {
+            override fun onFailure(call: Call<List<News>>, t: Throwable) {
+                view.showConnectionError()
+                isLoading = false
+            }
+            override fun onResponse(call: Call<List<News>>, response: Response<List<News>>) {
+                view.showNewsDetails(requireNotNull(response.body()!!.first()))
                 isLoading = false
             }
         })

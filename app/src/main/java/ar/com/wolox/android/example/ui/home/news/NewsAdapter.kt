@@ -27,15 +27,13 @@ class NewsAdapter(private val vNewsListItems: List<News>, private val userId: In
         holder.vTitleView.text = currentItem.title
         holder.vTextInformation.text = currentItem.text
         holder.vTextTime.text = currentItem.readableCreationTime
+        holder.vEmotionImage.setImageResource(R.drawable.ic_like_selector)
+        holder.vEmotionImage.isSelected = currentItem.likes.contains(userId)
 
         Glide.with(holder.itemView.context)
                 .load(currentItem.formatPicture)
                 .circleCrop()
                 .into(holder.vItemImage)
-        if (currentItem.likes.contains(userId))
-            holder.vEmotionImage.setImageResource(R.drawable.ic_like_on)
-        else
-            holder.vEmotionImage.setImageResource(R.drawable.ic_like_off)
 
         holder.onItemClicked(onNewsClickListener, currentItem)
     }

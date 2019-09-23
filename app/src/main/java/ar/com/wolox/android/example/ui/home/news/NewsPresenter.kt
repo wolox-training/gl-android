@@ -6,27 +6,23 @@ import ar.com.wolox.android.R
 import ar.com.wolox.android.example.model.News
 import ar.com.wolox.android.example.network.NewsServices
 import ar.com.wolox.android.example.utils.UserSession
-import javax.inject.Inject
 import ar.com.wolox.wolmo.core.presenter.BasePresenter
 import ar.com.wolox.wolmo.networking.retrofit.RetrofitServices
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.collections.ArrayList
+import javax.inject.Inject
 
 class NewsPresenter @Inject constructor(private val monitorServices: RetrofitServices, private val userSession: UserSession) : BasePresenter<NewsView>() {
 
-    private val USER_ID = "userId"
-
     private lateinit var sharedPref: SharedPreferences
-
+    private val USER_ID = "userId"
+    private var listNews = arrayListOf<News>()
     private var isLoading: Boolean = true
         set(value) {
             field = value
             view.showLoading(value)
         }
-
-    private var listNews = arrayListOf<News>()
 
     override fun onViewAttached() {
         isLoading = true
@@ -38,7 +34,7 @@ class NewsPresenter @Inject constructor(private val monitorServices: RetrofitSer
         val call = monitorServices.getService(NewsServices::class.java).getNews()
         call.enqueue(object : Callback<List<News>> {
             override fun onFailure(call: Call<List<News>>, t: Throwable) {
-                view.showError()
+                view.showConnectionError()
                 isLoading = false
             }
 
@@ -51,14 +47,9 @@ class NewsPresenter @Inject constructor(private val monitorServices: RetrofitSer
         })
     }
 
-        fun onRefreshNews() {
+    fun onRefreshNews() {
         isLoading = true
         getNews()
-    }
-
-    fun onAddRefreshNews() {
-        isLoading = true
-        getAddedNews()
     }
 
     fun getAddedNews() {
@@ -67,7 +58,7 @@ class NewsPresenter @Inject constructor(private val monitorServices: RetrofitSer
         val call = monitorServices.getService(NewsServices::class.java).getNews()
         call.enqueue(object : Callback<List<News>> {
             override fun onFailure(call: Call<List<News>>, t: Throwable) {
-                view.showError()
+                view.showConnectionError()
                 isLoading = false
             }
 
@@ -85,6 +76,6 @@ class NewsPresenter @Inject constructor(private val monitorServices: RetrofitSer
     }
 
     fun onNewsClicked(new: News) {
-        view.showNewsDetails(new, userSession.userId)
+        view.showNewsDetails(new, sharedPref.getInt(USER_ID, 0))
     }
 }

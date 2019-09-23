@@ -68,7 +68,9 @@
         android:layout_marginBottom="@dimen/spacing_medium_more"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/ic_like_off"
+        android:src="@drawable/ic_like_selector"
+        android:state_selected="true"
+
         android:contentDescription="@string/like_item" />
 
     <TextView
