@@ -1,4 +1,4 @@
-package ar.com.wolox.android.example.ui.home.newsDetails
+package ar.com.wolox.android.example.ui.home.newDetails
 
 import ar.com.wolox.android.example.model.News
 import ar.com.wolox.android.example.network.NewsServices
@@ -9,7 +9,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
-class NewsDetailsPresenter @Inject constructor(private val monitorServices: RetrofitServices) : BasePresenter<NewsDetailsView>() {
+class NewDetailsPresenter @Inject constructor(private val monitorServices: RetrofitServices) : BasePresenter<NewDetailsView>() {
 
     private var newId: Int = 0
     private var isLoading: Boolean = true

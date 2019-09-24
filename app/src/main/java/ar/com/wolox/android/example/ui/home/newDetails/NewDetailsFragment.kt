@@ -1,4 +1,4 @@
-package ar.com.wolox.android.example.ui.home.newsDetails
+package ar.com.wolox.android.example.ui.home.newDetails
 
 import android.os.Bundle
 import android.widget.Toast
@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.fragment_news_details.*
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.fragment_news_details.vNewsDetailsEmotionImage
 
-class NewsDetailsFragment @Inject constructor() : WolmoFragment<NewsDetailsPresenter>(), NewsDetailsView {
+class NewDetailsFragment @Inject constructor() : WolmoFragment<NewDetailsPresenter>(), NewDetailsView {
 
     private lateinit var currentNews: News
     private var username: Int? = null
@@ -29,11 +29,11 @@ class NewsDetailsFragment @Inject constructor() : WolmoFragment<NewsDetailsPrese
         private val NEWS_ID = "newsId"
         private val USER_ID = "userId"
 
-        fun newInstance(currentNews: News, user: Int): NewsDetailsFragment {
+        fun newInstance(currentNews: News, user: Int): NewDetailsFragment {
             val args = Bundle()
             args.putSerializable(NEWS_ID, currentNews)
             args.putSerializable(USER_ID, user)
-            val fragment = NewsDetailsFragment()
+            val fragment = NewDetailsFragment()
             fragment.arguments = args
             return fragment
         }

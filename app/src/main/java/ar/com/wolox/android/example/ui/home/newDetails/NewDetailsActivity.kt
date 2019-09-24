@@ -1,4 +1,4 @@
-package ar.com.wolox.android.example.ui.home.newsDetails
+package ar.com.wolox.android.example.ui.home.newDetails
 
 import android.content.Context
 import android.content.Intent
@@ -6,14 +6,14 @@ import ar.com.wolox.android.R
 import ar.com.wolox.android.example.model.News
 import ar.com.wolox.wolmo.core.activity.WolmoActivity
 
-class NewsDetailsActivity : WolmoActivity() {
+class NewDetailsActivity : WolmoActivity() {
 
     override fun layout(): Int {
         return R.layout.activity_news_details
     }
 
     override fun init() {
-        replaceFragment(R.id.vActivityNewsDetails, NewsDetailsFragment.newInstance(
+        replaceFragment(R.id.vActivityNewsDetails, NewDetailsFragment.newInstance(
                 intent.getSerializableExtra(NEWS_ID) as News,
                 intent.getSerializableExtra(USER_ID) as Int))
     }
@@ -24,7 +24,7 @@ class NewsDetailsActivity : WolmoActivity() {
         private const val USER_ID = "userId"
 
         fun start(context: Context, currentNews: News, user: Int) {
-            context.startActivity(Intent(context, NewsDetailsActivity::class.java)
+            context.startActivity(Intent(context, NewDetailsActivity::class.java)
                     .putExtra(NEWS_ID, currentNews)
                     .putExtra(USER_ID, user))
         }

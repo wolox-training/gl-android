@@ -1,8 +1,8 @@
-package ar.com.wolox.android.example.ui.home.newsDetails
+package ar.com.wolox.android.example.ui.home.newDetails
 
 import ar.com.wolox.android.example.model.News
 
-interface NewsDetailsView {
+interface NewDetailsView {
 
     fun showLoading(case: Boolean)
 

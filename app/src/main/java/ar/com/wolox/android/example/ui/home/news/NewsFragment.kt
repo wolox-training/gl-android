@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ar.com.wolox.android.R
 import ar.com.wolox.android.example.model.News
-import ar.com.wolox.android.example.ui.home.newsDetails.NewsDetailsActivity
+import ar.com.wolox.android.example.ui.home.newDetails.NewDetailsActivity
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
 import kotlinx.android.synthetic.main.fragment_news.*
 import javax.inject.Inject
@@ -43,7 +43,6 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsPresenter>(), NewsV
     override fun showNews(body: List<News>) {
         vHomeListItems = ArrayList(body)
         vAdapter = NewsAdapter(vHomeListItems, presenter.getUserId(requireContext())) {
-
             presenter.onNewsClicked(it)
         }
         vNewsRecyclerView.adapter = vAdapter
@@ -69,6 +68,6 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsPresenter>(), NewsV
     }
 
     override fun showNewsDetails(new: News, userId: Int?) {
-        NewsDetailsActivity.start(requireContext(), new, userId!!)
+        NewDetailsActivity.start(requireContext(), new, userId!!)
     }
 }
