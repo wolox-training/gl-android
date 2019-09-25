@@ -8,9 +8,7 @@ import ar.com.wolox.wolmo.core.activity.WolmoActivity
 
 class NewDetailsActivity : WolmoActivity() {
 
-    override fun layout(): Int {
-        return R.layout.activity_news_details
-    }
+    override fun layout() = R.layout.activity_news_details
 
     override fun init() {
         replaceFragment(R.id.vActivityNewsDetails, NewDetailsFragment.newInstance(

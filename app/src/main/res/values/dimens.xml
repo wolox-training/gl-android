@@ -49,12 +49,6 @@
     <dimen name="login_cover_logo_height">112dp</dimen>
     <dimen name="main_logo_padding">16dp</dimen>
     <dimen name="news_item_img_margin">6dp</dimen>
-
-    <dimen name="new_details_back_button_dimension">25dp</dimen>
-    <dimen name="new_details_back_button_margins">20dp</dimen>
-    <dimen name="new__detailsmax_width_title">250dp</dimen>
-    <dimen name="new_details_max_width_time">110dp</dimen>
     <dimen name="new_details_image_height">300dp</dimen>
-
 
 </resources>
