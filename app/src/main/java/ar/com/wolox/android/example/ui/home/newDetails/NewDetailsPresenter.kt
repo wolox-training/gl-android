@@ -32,16 +32,12 @@ class NewDetailsPresenter @Inject constructor(private val monitorServices: Retro
                 isLoading = false
             }
             override fun onResponse(call: Call<List<News>>, response: Response<List<News>>) {
-
-                // Simulated Post like change
                 val new = response.body()!!.first()
                 val position = new.likes.indexOf(username)
-                if (position == -1)
-                    new.likes.add(username!!)
-                else
+                if (new.likes.contains(username))
                     new.likes.removeAt(position)
-                // Update view from simulated change
-
+                else
+                    new.likes.add(username!!)
                 view.showNewsDetailsToLikesUpdates(response.body()!!.first().likes)
                 isLoading = false
             }
