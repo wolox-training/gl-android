@@ -8,25 +8,31 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
 import java.util.Objects;
 import ar.com.wolox.android.R;
 import ar.com.wolox.android.example.ui.home.HomeActivity;
-import ar.com.wolox.android.example.ui.signup.SignUpActivity;
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.BindView;
-
 
 
 public class LoginFragment extends WolmoFragment<LoginPresenter> implements LoginView {
 
     @BindView(R.id.vLogInButton) Button vLogInButton;
-    @BindView(R.id.vSignUpButton) Button vSignUpButton;
+    @BindView(R.id.vSignUpButtonGoogle) SignInButton vSignUpButtonGoogle;
     @BindView(R.id.vLogInEmail) EditText vLogInEmail;
     @BindView(R.id.vLogInPassword) EditText vLogInPassword;
     @BindView(R.id.vTermsConditions) TextView vTermsConditions;
     @BindView(R.id.vLoginProgressBar) ProgressBar vLoginProgressBar;
+
+    private GoogleSignInOptions gso;
+    private GoogleSignInClient mGoogleSignInClient;
+    private int RC_SIGN_IN = 0;
 
     @Override
     public int layout() {
@@ -36,6 +42,31 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements Logi
     @Override
     public void init() {
         ButterKnife.bind(this, Objects.requireNonNull(getActivity()));
+        // Configure sign-in to request the user's ID, email address, and basic
+        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        // Build a GoogleSignInClient with the options specified by gso.
+        mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            if (getPresenter().signInGoogle(getPresenter().getTask(data), getContext())) {
+                Intent intent = new Intent(getActivity(), HomeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        }
     }
 
     @Override
@@ -47,14 +78,29 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements Logi
             }
         });
 
-        vSignUpButton.setOnClickListener(new View.OnClickListener() {
+        vSignUpButtonGoogle.setOnClickListener(new View.OnClickListener() {
             @OnClick
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SignUpActivity.class);
-                startActivity(intent);
+                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+                startActivityForResult(signInIntent, RC_SIGN_IN);
             }
         });
         vTermsConditions.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    @Override
+    public void displayLogInGoogleError() {
+        Toast.makeText(requireContext(), R.string.login_invalid_user, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void displayLogInGoogleServerError() {
+        Toast.makeText(requireContext(), R.string.login_server_error, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void displayLogInGoogleNoConnection() {
+        Toast.makeText(requireContext(), R.string.login_failed, Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -21,4 +21,9 @@ interface LoginView {
 
     void completeLoading();
 
+    void displayLogInGoogleError();
+
+    void displayLogInGoogleServerError();
+
+    void displayLogInGoogleNoConnection();
 }

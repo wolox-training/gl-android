@@ -108,6 +108,7 @@ buildscript {
     ext.constraint_layout = '1.0.0'
     ext.joda = '2.10.3'
     ext.eventbus = '3.1.1'
+    ext.google_sign = '17.0.0'
 }
 
 dependencies {
@@ -172,4 +173,11 @@ dependencies {
 
     //Event Bus
     implementation "org.greenrobot:eventbus:$eventbus"
+
+    //Google Login
+    implementation "com.google.android.gms:play-services-identity:$google_sign"
+
+    api "com.google.android.gms:play-services-auth:$google_sign"
+    implementation "com.google.firebase:firebase-core:$google_sign"
+
 }
