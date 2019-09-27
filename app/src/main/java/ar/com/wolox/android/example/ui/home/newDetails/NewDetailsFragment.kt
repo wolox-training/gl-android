@@ -9,7 +9,6 @@ import ar.com.wolox.wolmo.core.fragment.WolmoFragment
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_news_details.*
 import javax.inject.Inject
-import kotlinx.android.synthetic.main.fragment_news_details.vNewsDetailsEmotionImage
 
 class NewDetailsFragment @Inject constructor() : WolmoFragment<NewDetailsPresenter>(), NewDetailsView {
 
@@ -23,20 +22,6 @@ class NewDetailsFragment @Inject constructor() : WolmoFragment<NewDetailsPresent
         username = arguments!!.getSerializable(USER_ID) as Int
         newsConfigurator(currentNews, username!!)
         presenter.setNewDetailId(currentNews.id)
-    }
-
-    companion object {
-        private val NEWS_ID = "newsId"
-        private val USER_ID = "userId"
-
-        fun newInstance(currentNews: News, user: Int): NewDetailsFragment {
-            val args = Bundle()
-            args.putSerializable(NEWS_ID, currentNews)
-            args.putSerializable(USER_ID, user)
-            val fragment = NewDetailsFragment()
-            fragment.arguments = args
-            return fragment
-        }
     }
 
     private fun newsConfigurator(currentNews: News, username: Int) {
@@ -81,5 +66,19 @@ class NewDetailsFragment @Inject constructor() : WolmoFragment<NewDetailsPresent
 
     override fun showNewsDetails(newDetails: News) {
         newsConfigurator(newDetails, username!!)
+    }
+
+    companion object {
+        private val NEWS_ID = "newsId"
+        private val USER_ID = "userId"
+
+        fun newInstance(currentNews: News, user: Int): NewDetailsFragment {
+            val args = Bundle()
+            args.putSerializable(NEWS_ID, currentNews)
+            args.putSerializable(USER_ID, user)
+            val fragment = NewDetailsFragment()
+            fragment.arguments = args
+            return fragment
+        }
     }
 }
