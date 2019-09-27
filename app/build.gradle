@@ -66,7 +66,9 @@ android {
 
     productFlavors {
         stage {
-            applicationId defaultConfig.applicationId + ".stage"
+            applicationId defaultConfig.applicationId
+            // .stage generate error to compilation
+            // applicationId defaultConfig.applicationId + ".stage"
             versionName defaultConfig.versionName + "-stage"
             resValue "string", "app_name", "[Stage] WoloxApp"
         }

@@ -63,7 +63,7 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements Logi
             // a listener.
             if (getPresenter().signInGoogle(getPresenter().getTask(data), getContext())) {
                 Intent intent = new Intent(getActivity(), HomeActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
         }
