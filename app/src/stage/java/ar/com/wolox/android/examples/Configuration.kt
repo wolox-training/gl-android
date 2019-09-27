@@ -1,4 +1,4 @@
-package ar.com.wolox.android.example
+package ar.com.wolox.android.examples
 
 internal class Configuration : BaseConfiguration() {
     companion object {
