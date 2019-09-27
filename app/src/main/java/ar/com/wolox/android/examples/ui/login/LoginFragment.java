@@ -8,11 +8,14 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
+
 import java.util.Objects;
+
 import ar.com.wolox.android.examples.R;
 import ar.com.wolox.android.examples.ui.home.HomeActivity;
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment;
@@ -122,6 +125,7 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements Logi
     public void onLoginSuccess(Integer userId) {
         getPresenter().setPreferences(Objects.requireNonNull(getContext()), vLogInEmail.getText().toString(), userId);
         Intent intent = new Intent(getActivity(), HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 
