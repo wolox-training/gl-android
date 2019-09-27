@@ -1,12 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="ar.com.wolox.android">
+    package="ar.com.wolox.android.examples">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".example.TrainingApplication"
+        android:name="ar.com.wolox.android.examples.TrainingApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,7 +14,7 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name=".example.ui.RootActivity"
+            android:name="ar.com.wolox.android.examples.ui.RootActivity"
             android:noHistory="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -24,23 +24,23 @@
         </activity>
 
         <activity
-            android:name=".example.ui.login.LoginActivity"
+            android:name="ar.com.wolox.android.examples.ui.login.LoginActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".example.ui.signup.SignUpActivity"
+            android:name="ar.com.wolox.android.examples.ui.signup.SignUpActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".example.ui.home.HomeActivity"
+            android:name="ar.com.wolox.android.examples.ui.home.HomeActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".example.ui.home.newDetails.NewDetailsActivity"
+            android:name="ar.com.wolox.android.examples.ui.home.newDetails.NewDetailsActivity"
             android:screenOrientation="portrait" />
         
         <activity
-            android:name=".example.ui.viewpager.ViewPagerActivity"
+            android:name="ar.com.wolox.android.examples.ui.viewpager.ViewPagerActivity"
             android:screenOrientation="portrait" />
 
     </application>

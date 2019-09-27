@@ -4,11 +4,13 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'idea'
 apply plugin: 'jacoco-android'
+apply plugin: 'com.google.gms.google-services'
 apply from: 'keystore.gradle'
 apply from: '../jacoco.gradle'
 apply from: '../quality.gradle'
 apply from: '../scripts/warp/warp_task.gradle'
 apply from: '../scripts/sanity/sanity_task.gradle'
+
 
 idea {
     module {
@@ -22,7 +24,7 @@ android {
     buildToolsVersion '28.0.3'
 
     defaultConfig {
-        applicationId "ar.com.wolox.android.TrainingApplication"
+        applicationId "ar.com.wolox.android.examples.TrainingApplication"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
@@ -64,7 +66,8 @@ android {
 
     productFlavors {
         stage {
-            applicationId defaultConfig.applicationId + ".stage"
+            // .stage generate error to compilation
+            // applicationId defaultConfig.applicationId + ".stage"
             versionName defaultConfig.versionName + "-stage"
             resValue "string", "app_name", "[Stage] WoloxApp"
         }
@@ -108,6 +111,9 @@ buildscript {
     ext.constraint_layout = '1.0.0'
     ext.joda = '2.10.3'
     ext.eventbus = '3.1.1'
+    ext.google_sign = '17.0.0'
+    ext.google_firebase = '17.2.0'
+
 }
 
 dependencies {
@@ -172,4 +178,8 @@ dependencies {
 
     //Event Bus
     implementation "org.greenrobot:eventbus:$eventbus"
+
+    //Google Login
+    implementation "com.google.android.gms:play-services-auth:$google_sign"
+    implementation "com.google.firebase:firebase-analytics:$google_firebase"
 }

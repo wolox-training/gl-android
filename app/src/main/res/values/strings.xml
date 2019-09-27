@@ -40,5 +40,7 @@
     <string name="fail_generic">Generic Error</string>
     <string name="new_details_image">In this space is the image of the news</string>
     <string name="vNewsDetailsTopText">Post</string>
+    <string name="login_server_error">Failed connection to Server</string>
+
 
 </resources>
