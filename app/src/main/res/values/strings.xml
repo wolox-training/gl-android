@@ -34,6 +34,11 @@
     <string name="home_news">NEWS</string>
     <string name="home_news_fragment">News</string>
     <string name="signup_activity">SIGN UP</string>
-
+    <string name="photo_item">Photo Item</string>
+    <string name="like_item">Like Item</string>
+    <string name="fail_loading_news">Failed connection</string>
+    <string name="fail_generic">Generic Error</string>
+    <string name="new_details_image">In this space is the image of the news</string>
+    <string name="vNewsDetailsTopText">Post</string>
 
 </resources>
