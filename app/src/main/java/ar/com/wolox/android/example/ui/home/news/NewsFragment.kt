@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ar.com.wolox.android.R
 import ar.com.wolox.android.example.model.News
+import ar.com.wolox.android.example.ui.home.newDetails.NewDetailsActivity
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
 import kotlinx.android.synthetic.main.fragment_news.*
 import javax.inject.Inject
@@ -41,7 +42,9 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsPresenter>(), NewsV
 
     override fun showNews(body: List<News>) {
         vHomeListItems = ArrayList(body)
-        vAdapter = NewsAdapter(vHomeListItems, presenter.getUserId(requireContext()))
+        vAdapter = NewsAdapter(vHomeListItems, presenter.getUserId(requireContext())) {
+            presenter.onNewsClicked(it)
+        }
         vNewsRecyclerView.adapter = vAdapter
         vAdapter.notifyDataSetChanged()
     }
@@ -57,13 +60,14 @@ class NewsFragment @Inject constructor() : WolmoFragment<NewsPresenter>(), NewsV
 
                 val totalItemCount = vLayoutManager.itemCount
                 val lastVisibleItemPosition = vLayoutManager.findLastVisibleItemPosition()
-                val findFirstCompletelyVisibleItemPosition = vLayoutManager.findFirstCompletelyVisibleItemPosition()
-                val findFirstVisibleItemPosition = vLayoutManager.findFirstVisibleItemPosition()
-
                 if (lastVisibleItemPosition + 1 >= totalItemCount) {
                     presenter.getAddedNews()
                 }
             }
         })
+    }
+
+    override fun showNewsDetails(new: News, userId: Int?) {
+        NewDetailsActivity.start(requireContext(), new, userId!!)
     }
 }

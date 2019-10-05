@@ -12,5 +12,7 @@ object Extras {
 
     object UserLogin {
         const val USERNAME = "username"
+        const val SP_USERNAME_KEY = "username"
+        const val USER_ID = "userId"
     }
 }

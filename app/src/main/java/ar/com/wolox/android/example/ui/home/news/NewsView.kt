@@ -11,4 +11,6 @@ interface NewsView {
     fun showNews(body: List<News>)
 
     fun showLoading(case: Boolean)
+
+    fun showNewsDetails(new: News, userId: Int?)
 }

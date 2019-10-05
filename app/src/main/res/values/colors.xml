@@ -11,5 +11,10 @@
     <color name="wolox_green_transparent">#E68DC63F</color>
     <color name="wolox_blue">#1D9BD7</color>
     <color name="wolox_blue_transparent">#E61D9BD7</color>
+    <color name="wolox_top_color">#FF89D8E0</color>
+    <color name="wolox_title_color">#FFEF2381</color>
+
+
+    89d8e0
 
 </resources>
